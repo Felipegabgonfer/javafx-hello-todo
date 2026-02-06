@@ -17,11 +17,11 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: HelloWorldFx - Executable
-        path: HelloWorldFx.exe
+        path: HelloWorldFx.deb
 
     - name: Release
       uses: softprops/actions-gh-release@v2
       if: github.ref_type=='tag'
       with:
-        files: "*.exe"
+        files: "*.deb"
 
