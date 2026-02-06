@@ -1,0 +1,27 @@
+name: Upload a tag
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+  steps:
+    - name: Upload executable
+      uses: actions/upload-artifact@v4
+      with:
+        name: HelloWorldFx - Executable
+        path: HelloWorldFx.exe
+
+    - name: Release
+      uses: softprops/actions-gh-release@v2
+      if: github.ref_type=='tag'
+      with:
+        files: "*.exe"
+
